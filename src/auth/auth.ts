@@ -4,7 +4,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { type NextAuthOptions } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 
-export const authConfig: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),
   providers: [
     Auth0Provider({

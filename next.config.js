@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    mdxRs: true,
+  },
 
-module.exports = nextConfig
+}
+
+const withMDX = require('@next/mdx')({
+  options: {
+    providerImportSource: '@mdx-js/react',
+  },
+})
+module.exports = withMDX(nextConfig)
