@@ -22,9 +22,7 @@ export default function MDXLayout({ children }: { children: React.ReactNode }) {
   return (
     <MDXProvider components={components}>
       <div className="p-4 md:p-0">
-        <div className="container max-w-3xl bg-muted p-4 text-muted-foreground md:mx-auto md:my-8 md:p-8">
-          {children}
-        </div>
+        <div className="container md:mx-auto">{children}</div>
       </div>
     </MDXProvider>
   );
