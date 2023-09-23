@@ -52,7 +52,6 @@ export async function Footer() {
               <a
                 href="https://ra.co/promoters/112866"
                 className="bg-transparent !font-bold text-white"
-                aria-label="Resident Advisor"
               >
                 RA
               </a>
@@ -91,6 +90,7 @@ export async function Footer() {
               <a
                 href="mailto:rave@tumult.club"
                 className="bg-transparent text-white"
+                aria-label="Send E-Mail"
               >
                 <Mail size={20} />
               </a>
