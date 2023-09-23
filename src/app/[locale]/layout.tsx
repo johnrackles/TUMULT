@@ -39,7 +39,6 @@ export function generateMetadata({
       default: "TUMULT",
     },
     alternates: {
-      canonical: `https://www.tumult.club/${params.locale}`,
       languages: {
         en: "https://www.tumult.club/en",
         de: "https://www.tumult.club/de",
