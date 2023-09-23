@@ -1,7 +1,9 @@
 import { authOptions } from "@/auth/auth";
+import { getCurrentLocale, getI18n } from "@/locales/server";
 import { Instagram, Mail, Send } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { LanguageSwtich } from "./LanguageSwitch";
 import { SigninButton } from "./SigninButton";
 import { Tooltip } from "./Tooltip";
 import { P } from "./Typography";
@@ -9,6 +11,8 @@ import { Button } from "./ui/button";
 
 export async function Footer() {
   const session = await getServerSession(authOptions);
+  const locale = getCurrentLocale();
+  const t = await getI18n();
 
   return (
     <footer className="space-y-2 bg-primary p-4 text-right text-primary-foreground">
@@ -65,6 +69,15 @@ export async function Footer() {
           </Tooltip>
         </li>
       </ul>
+      <LanguageSwtich
+        locale={locale}
+        className="ml-auto"
+        values={[
+          { name: t("German"), value: "de" },
+          { name: t("English"), value: "en" },
+        ]}
+        placeholder={t("Select Language")}
+      />
     </footer>
   );
 }
