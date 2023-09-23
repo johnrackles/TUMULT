@@ -28,7 +28,10 @@ const AeonikFono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "TUMULT",
+  title: {
+    template: "TUMULT | %s ",
+    default: "TUMULT",
+  },
   description: "Was dein Körper braucht",
 };
 
