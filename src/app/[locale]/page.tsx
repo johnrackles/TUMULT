@@ -9,6 +9,7 @@ export default function Home() {
         src={Logo as StaticImport}
         alt="TUMULT"
         className="w-3/4 max-w-lg"
+        priority
       />
     </main>
   );
