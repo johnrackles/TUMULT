@@ -28,7 +28,10 @@ export function LanguageSwtich({
       onValueChange={(val) => changeLocale(val as "en" | "de")}
       defaultValue={locale}
     >
-      <SelectTrigger className={cn("w-[180px] bg-transparent", className)}>
+      <SelectTrigger
+        className={cn("w-[180px] bg-transparent", className)}
+        aria-label="Select Language"
+      >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
