@@ -52,6 +52,7 @@ export async function Footer() {
               <a
                 href="https://ra.co/promoters/112866"
                 className="bg-transparent !font-bold text-white"
+                aria-label="Resident Advisor"
               >
                 RA
               </a>
@@ -64,6 +65,7 @@ export async function Footer() {
               <a
                 href="https://t.me/tumultberlin"
                 className="bg-transparent text-white"
+                aria-label="Telegram"
               >
                 <Send size={20} />
               </a>
@@ -76,6 +78,7 @@ export async function Footer() {
               <a
                 href="https://www.instagram.com/tumult.berlin/"
                 className="bg-transparent text-white"
+                aria-label="Instagram"
               >
                 <Instagram size={20} />
               </a>
