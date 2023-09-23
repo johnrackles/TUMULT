@@ -2,7 +2,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
 
@@ -28,13 +28,29 @@ const AeonikFono = localFont({
   variable: "--font-aeonik",
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: "TUMULT | %s ",
-    default: "TUMULT",
-  },
-  description: "Was dein Körper braucht",
-};
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Metadata {
+  return {
+    title: {
+      template: "TUMULT | %s ",
+      default: "TUMULT",
+    },
+    alternates: {
+      canonical: "https://www.tumult.club",
+      languages: {
+        en: "https://www.tumult.club/en",
+        de: "https://www.tumult.club/de",
+      },
+    },
+    description:
+      params.locale === "en"
+        ? "Tumult is a friendship-based collective hosting inclusive events. They champion community, diversity, local talent, and conscious pricing."
+        : "Tumult ist ein auf Freundschaft basierendes Kollektiv, das inklusive Veranstaltungen organisiert. Sie setzen sich für Gemeinschaft, Vielfalt, lokale Talente und bewusste Preisgestaltung ein.",
+  };
+}
 
 export default function RootLayout({
   children,
