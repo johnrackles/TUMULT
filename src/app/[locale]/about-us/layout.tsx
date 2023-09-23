@@ -1,7 +1,6 @@
 "use client";
 import { H1, H2, List, P } from "@/components/Typography";
 import { cn } from "@/lib/utils";
-import { I18nProviderClient } from "@/locales/client";
 import { MDXProvider } from "@mdx-js/react";
 import { type HTMLAttributes } from "react";
 
@@ -21,14 +20,12 @@ const components = {
 
 export default function MDXLayout({ children }: { children: React.ReactNode }) {
   return (
-    <I18nProviderClient>
-      <MDXProvider components={components}>
-        <div className="p-4 md:p-0">
-          <div className="container max-w-3xl bg-muted p-4 text-muted-foreground md:mx-auto md:my-8 md:p-8">
-            {children}
-          </div>
+    <MDXProvider components={components}>
+      <div className="p-4 md:p-0">
+        <div className="container max-w-3xl bg-muted p-4 text-muted-foreground md:mx-auto md:my-8 md:p-8">
+          {children}
         </div>
-      </MDXProvider>
-    </I18nProviderClient>
+      </div>
+    </MDXProvider>
   );
 }
