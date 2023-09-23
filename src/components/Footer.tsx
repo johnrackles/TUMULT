@@ -22,7 +22,10 @@ export async function Footer() {
       <ul className="mx-auto flex flex-row items-center text-sm">
         {session ? null : (
           <li>
-            <SigninButton variant="ghost" className="text-primary-foreground" />
+            <SigninButton
+              variant="ghost"
+              className="p-0 text-white hover:bg-transparent hover:text-white"
+            />
           </li>
         )}
         <li>
