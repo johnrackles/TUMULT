@@ -13,6 +13,7 @@ env:
   AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
   AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
   AUTH0_ISSUER: ${{ secrets.AUTH0_DOMAIN }}
+  DRIZZLE_DATABASE_URL: ${{ secrets.DRIZZLE_DATABASE_URL }}
 
 jobs:
   build:
