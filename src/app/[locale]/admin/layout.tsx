@@ -1,6 +1,9 @@
 import { authOptions } from "@/auth/auth";
+import { type Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = { title: "Admin" };
 
 export default async function AdminLayout({
   children,
@@ -13,5 +16,5 @@ export default async function AdminLayout({
     redirect("/api/auth/signin?error=Not%20Authenticated");
   }
 
-  return <div className="bg-black p-4 md:p-8">{children}</div>;
+  return <div className="container bg-black p-4 md:p-8">{children}</div>;
 }

@@ -13,7 +13,7 @@ export function H1({
   return (
     <h1
       className={cn(
-        "scroll-m-20 text-4xl font-extrabold tracking-tight text-primary lg:text-5xl",
+        "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
         className,
       )}
     >
@@ -29,7 +29,7 @@ export function H2({
   return (
     <h2
       className={cn(
-        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-primary transition-colors first:mt-0",
+        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0",
         className,
       )}
     >
@@ -42,7 +42,7 @@ export function H3({ children, className }: Props) {
   return (
     <h3
       className={cn(
-        "scroll-m-20 text-2xl font-semibold tracking-tight text-primary",
+        "scroll-m-20 text-2xl font-semibold tracking-tight",
         className,
       )}
     >
@@ -55,7 +55,7 @@ export function H4({ children, className }: Props) {
   return (
     <h4
       className={cn(
-        "scroll-m-20 text-xl font-semibold tracking-tight text-primary",
+        "scroll-m-20 text-xl font-semibold tracking-tight",
         className,
       )}
     >
