@@ -33,7 +33,8 @@
     "src/**/*.tsx",
     "src/**/*.cjs",
     "src/**/*.mjs",
-    ".lintstagedrc.cjs"
+    ".lintstagedrc.cjs",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules", ".lintstagedrc.cjs"]
 }
