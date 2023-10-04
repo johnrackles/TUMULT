@@ -10,7 +10,7 @@ export function SignoutButton({ className }: { className?: string }) {
     <Tooltip text="Sign Out">
       <Button
         className={cn(
-          "ml-auto bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
+          "bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
           className,
         )}
         onClick={() => {
