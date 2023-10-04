@@ -2,7 +2,10 @@ import { H1, P } from "@/components/Typography";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { type Metadata } from "next";
 
-export const metadata: Metadata = { title: "Impressum" };
+export const metadata: Metadata = {
+  title: "Impressum",
+  robots: { index: false, follow: false },
+};
 
 export default function ImpressumPage() {
   return (
