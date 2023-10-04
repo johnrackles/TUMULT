@@ -61,7 +61,7 @@ export default function RootLayout({
       <body
         className={cn(
           AeonikFono.variable,
-          "grid min-h-screen grid-rows-[auto,1fr,auto]",
+          "grid min-h-screen grid-rows-[auto,1fr,auto] bg-background",
         )}
       >
         <Header />

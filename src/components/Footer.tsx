@@ -19,8 +19,12 @@ export async function Footer() {
       <P className="mx-auto">
         © <span className="font-bold">TUMULT</span> {new Date().getFullYear()}
       </P>
-      <ul className="mx-auto flex flex-row items-center text-sm">
-        {session ? null : (
+      <ul className="mx-auto flex flex-row items-center space-x-4 text-sm">
+        {session ? (
+          <li>
+            <Link href="/admin">Admin</Link>
+          </li>
+        ) : (
           <li>
             <SigninButton
               variant="ghost"
@@ -31,7 +35,7 @@ export async function Footer() {
         <li>
           <Link
             href="/about-us"
-            className="ml-2 inline-block hover:underline md:ml-4"
+            className="inline-block hover:underline md:ml-4"
           >
             {t("About Us")}
           </Link>
@@ -39,7 +43,7 @@ export async function Footer() {
         <li>
           <Link
             href="/impressum"
-            className="ml-2 inline-block hover:underline md:ml-4"
+            className="inline-block hover:underline md:ml-4"
           >
             {t("Imprint")}
           </Link>
