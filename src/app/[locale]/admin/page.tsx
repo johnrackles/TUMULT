@@ -55,7 +55,7 @@ export default function Admin() {
               <li>asdasdZ</li>
             </ul>
             <H3 className="flex flex-row items-center">
-              <Text className="mr-2 h-4 w-4" /> Promotext
+              <Text className="mr-2 h-4 w-4" /> Description
             </H3>
             <div>
               <P>
