@@ -35,7 +35,7 @@ export function generateMetadata({
 }): Metadata {
   return {
     title: {
-      template: "TUMULT | %s ",
+      template: "%s | TUMULT",
       default: "TUMULT",
     },
     alternates: {

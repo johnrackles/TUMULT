@@ -4,13 +4,10 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { type Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { NavigationMenuLink } from "./navigation-menu-link";
-
-export const metadata: Metadata = { title: "Admin" };
 
 export default async function AdminLayout({
   children,

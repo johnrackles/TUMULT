@@ -16,7 +16,7 @@ export async function addLocation(
       .values(validated)
       .returning({ id: locations.id });
 
-    revalidatePath("/admin/locations");
+    revalidatePath("/[locale]/admin/locations", "page");
     redirect(`/admin/locations/${rows[0]?.id}`);
   } catch (e) {
     if (e instanceof Error) {
