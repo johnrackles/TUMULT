@@ -14,7 +14,7 @@ import { AddArtistForm } from "./add-artist-form";
 import { DeleteArtistForm } from "./delete-artist-form";
 import { EditArtistForm } from "./edit-artist-form";
 
-export async function getArtists() {
+async function getArtists() {
   const artists = await db.query.artists.findMany({
     orderBy: [asc(dbArtists.name)],
   });
