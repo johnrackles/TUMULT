@@ -4,6 +4,7 @@ const nextConfig = {
     mdxRs: true,
     serverActions: true,
   },
+  reactStrictMode: true,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

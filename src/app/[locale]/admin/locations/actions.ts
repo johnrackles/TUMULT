@@ -1,7 +1,9 @@
 "use server";
 
+import { authOptions } from "@/auth/auth";
 import { db } from "@/db/db";
 import { floors, insertLocationsSchema, locations } from "@/db/party/schema";
+import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { type z } from "zod";
@@ -10,6 +12,12 @@ export async function addLocation(
   values: z.infer<typeof insertLocationsSchema>,
 ) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      redirect("/api/auth/signin?error=Not%20Authenticated");
+    }
+
     const validated = insertLocationsSchema.parse(values);
 
     const rows = await db

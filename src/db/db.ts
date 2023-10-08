@@ -7,4 +7,7 @@ import * as partySchema from "./party/schema";
 neonConfig.fetchConnectionCache = true;
 
 const sql = neon(env.DRIZZLE_DATABASE_URL);
-export const db = drizzle(sql, { schema: { ...authSchema, ...partySchema } });
+export const db = drizzle(sql, {
+  schema: { ...authSchema, ...partySchema },
+  logger: process.env.NODE_ENV === "development",
+});
