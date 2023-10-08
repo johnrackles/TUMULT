@@ -16,7 +16,7 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import { eq } from "drizzle-orm";
 import { Edit, Music, Pin, Text } from "lucide-react";
 import Image from "next/image";
-import Flyer from "./tumult-artwork.webp";
+import Flyer from "../tumult-artwork.webp";
 
 dayjs.locale("de");
 dayjs.extend(localizedFormat);
