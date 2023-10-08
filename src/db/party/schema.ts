@@ -30,6 +30,7 @@ export const parties = pgTable(
     location: integer("location_id").notNull(),
     slug: text("slug").notNull().unique(),
     description: text("description").default(""),
+    flyer: text("flyer"),
   },
   (table) => {
     return { slugIdx: index("slug_idx").on(table.slug) };
@@ -77,6 +78,7 @@ export const insertPartySchema = z.object({
   slug: z.string().min(1),
   description: z.string().optional(),
   artists: z.array(z.number()).optional().default([]),
+  flyer: z.string().optional(),
 });
 
 export const locations = pgTable("locations", {
