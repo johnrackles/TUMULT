@@ -1,4 +1,5 @@
 import type { AdapterAccount } from "@auth/core/adapters";
+import { relations } from "drizzle-orm";
 import {
   integer,
   pgTable,
@@ -6,6 +7,7 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
+import { images } from "../image/schema";
 
 export const users = pgTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -14,6 +16,10 @@ export const users = pgTable("user", {
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
 });
+
+export const userRelations = relations(users, ({ many }) => ({
+  images: many(images),
+}));
 
 export const accounts = pgTable(
   "account",
@@ -34,7 +40,7 @@ export const accounts = pgTable(
   },
   (account) => ({
     compoundKey: primaryKey(account.provider, account.providerAccountId),
-  })
+  }),
 );
 
 export const sessions = pgTable("session", {
@@ -54,5 +60,5 @@ export const verificationTokens = pgTable(
   },
   (vt) => ({
     compoundKey: primaryKey(vt.identifier, vt.token),
-  })
+  }),
 );
