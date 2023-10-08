@@ -10,7 +10,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AddPartyForm } from "./add-party-form";
 
-export async function getParties() {
+async function getParties() {
   return await db.query.parties.findMany({ orderBy: [asc(parties.begin)] });
 }
 
