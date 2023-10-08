@@ -19,7 +19,7 @@ import { Edit, Music, Pin, Text } from "lucide-react";
 dayjs.locale("de");
 dayjs.extend(localizedFormat);
 
-export async function getParty(id: number) {
+async function getParty(id: number) {
   return await db.query.parties.findFirst({ where: eq(parties.id, id) });
 }
 
