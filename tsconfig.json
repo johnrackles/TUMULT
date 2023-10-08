@@ -36,7 +36,8 @@
     "src/**/*.cjs",
     "src/**/*.mjs",
     ".lintstagedrc.cjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/[locale]/admin/artists/actions"
   ],
   "exclude": ["node_modules", ".lintstagedrc.cjs"]
 }

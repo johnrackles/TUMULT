@@ -25,7 +25,6 @@ import { startTransition, useState } from "react";
 import { useForm } from "react-hook-form";
 import { type z } from "zod";
 import { addLocation } from "./actions";
-import { FloorsInput } from "./floors-input";
 
 export function AddLocationForm() {
   const [apiError, setApiError] = useState<string | null>(null);
@@ -34,10 +33,9 @@ export function AddLocationForm() {
     defaultValues: {
       name: "",
       street: "",
-      zip: "",
+      zip: "10245",
       city: "Berlin",
       country: "Germany",
-      floors: [],
     },
   });
 
@@ -137,7 +135,6 @@ export function AddLocationForm() {
                   </FormItem>
                 )}
               />
-              <FloorsInput />
               {apiError ? <FormMessage>{apiError}</FormMessage> : null}
             </div>
             <DialogFooter>
