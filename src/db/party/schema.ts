@@ -81,6 +81,11 @@ export const artists = pgTable("artists", {
   name: text("name").notNull(),
 });
 
+export const insertArtistSchema = z.object({
+  name: z.string().min(1),
+});
+export const editArtistSchema = insertArtistSchema.partial();
+
 export const locationsRelations = relations(locations, ({ many }) => ({
   floors: many(floors),
 }));

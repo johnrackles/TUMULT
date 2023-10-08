@@ -1,11 +1,23 @@
 import { H1 } from "@/components/Typography";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { db } from "@/db/db";
+import { artists as dbArtists } from "@/db/party/schema";
+import { asc } from "drizzle-orm";
 import { type Metadata } from "next";
 import Link from "next/link";
+import { AddArtistForm } from "./add-artist-form";
+import { EditArtistForm } from "./edit-artist-form";
 
 export async function getArtists() {
-  const artists = await db.query.artists.findMany();
+  const artists = await db.query.artists.findMany({
+    orderBy: [asc(dbArtists.name)],
+  });
 
   return artists;
 }
@@ -27,17 +39,21 @@ export default async function ArtistsPage() {
               <CardHeader>
                 <CardTitle>{artist.name}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <pre>{JSON.stringify(artist, undefined, 2)}</pre>
-              </CardContent>
+              <CardContent></CardContent>
+              <CardFooter>
+                <EditArtistForm />
+              </CardFooter>
             </Card>
           </Link>
         ))}
         <Card>
           <CardHeader>
-            <CardTitle>New Location</CardTitle>
+            <CardTitle>New Artist</CardTitle>
           </CardHeader>
           <CardContent></CardContent>
+          <CardFooter>
+            <AddArtistForm />
+          </CardFooter>
         </Card>
       </div>
     </div>
