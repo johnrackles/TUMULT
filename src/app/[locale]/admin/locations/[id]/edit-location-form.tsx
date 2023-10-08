@@ -25,23 +25,26 @@ import { startTransition, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { type z } from "zod";
 import { editLocation } from "./actions";
+import { EditFloorsForm } from "./edit-floors-form";
 
 export function EditLocationForm({
   initialValues,
+  floors,
 }: {
   initialValues: z.infer<typeof editLocationSchema>;
+  floors: { id: number; name: string }[];
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const { reset, ...form } = useForm<z.infer<typeof editLocationSchema>>({
+  const form = useForm<z.infer<typeof editLocationSchema>>({
     resolver: zodResolver(editLocationSchema),
     defaultValues: initialValues,
   });
 
   useEffect(() => {
-    reset(initialValues);
-  }, [initialValues, reset]);
+    form.reset(initialValues);
+  }, [form, initialValues]);
 
   function onSubmit(values: z.infer<typeof editLocationSchema>) {
     setIsLoading(true);
@@ -68,7 +71,7 @@ export function EditLocationForm({
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg">
-        <Form reset={reset} {...form}>
+        <Form {...form}>
           <form
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onSubmit={form.handleSubmit(onSubmit)}
@@ -143,6 +146,7 @@ export function EditLocationForm({
                   </FormItem>
                 )}
               />
+              <EditFloorsForm id={initialValues.id} floors={floors} />
               {apiError ? <FormMessage>{apiError}</FormMessage> : null}
             </div>
             <DialogFooter>

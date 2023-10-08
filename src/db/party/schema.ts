@@ -54,8 +54,11 @@ export const insertLocationsSchema = z.object({
   city: z.string().min(1),
   zip: z.string().min(1),
   country: z.string().min(1).default("Germany"),
+  floors: z.array(z.string().min(1)).optional().default([]),
 });
+
 export const editLocationSchema = z.object({
+  id: z.coerce.number(),
   name: z.string().optional(),
   street: z.string().optional(),
   city: z.string().optional(),
@@ -67,7 +70,7 @@ export const floors = pgTable("floors", {
   id: serial("id").primaryKey(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
-  name: text("name").notNull(),
+  name: text("name").unique().notNull(),
   locationId: integer("location_id"),
 });
 
