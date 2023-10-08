@@ -15,8 +15,6 @@ import "dayjs/locale/de";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { eq } from "drizzle-orm";
 import { Edit, Music, Pin, Text } from "lucide-react";
-import Image from "next/image";
-import Flyer from "../tumult-artwork.webp";
 
 dayjs.locale("de");
 dayjs.extend(localizedFormat);
@@ -41,7 +39,7 @@ export default function PartyPage({ params }: { params: { id: string } }) {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 md:grid-cols-2 md:grid-rows-1">
-          <Image src={Flyer} alt="" className="md:col-start-2" />
+          {/* <Image src={Flyer} alt="" className="md:col-start-2" />*/}
           <div className="space-y-4 md:col-start-1 md:row-start-1">
             <H3 className="flex flex-row items-center">
               <Pin className="mr-2 h-4 w-4" />
