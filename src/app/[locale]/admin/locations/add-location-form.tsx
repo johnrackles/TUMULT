@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { insertLocationsSchema } from "@/db/party/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle, Save } from "lucide-react";
 import { startTransition, useState } from "react";
 import { useForm } from "react-hook-form";
 import { type z } from "zod";
@@ -28,6 +28,7 @@ import { addLocation } from "./actions";
 import { FloorsInput } from "./floors-input";
 
 export function AddLocationForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const form = useForm<z.infer<typeof insertLocationsSchema>>({
     resolver: zodResolver(insertLocationsSchema),
@@ -43,6 +44,7 @@ export function AddLocationForm() {
 
   function onSubmit(values: z.infer<typeof insertLocationsSchema>) {
     form.clearErrors();
+    setIsLoading(true);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     startTransition(async () => {
@@ -50,6 +52,7 @@ export function AddLocationForm() {
       if (error) {
         setApiError(error.error);
       }
+      setIsLoading(false);
     });
   }
 
@@ -141,7 +144,15 @@ export function AddLocationForm() {
               {apiError ? <FormMessage>{apiError}</FormMessage> : null}
             </div>
             <DialogFooter>
-              <Button type="submit">Save new location</Button>
+              <Button type="submit">
+                {" "}
+                {isLoading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="mr-2 h-4 w-4" />
+                )}{" "}
+                Save
+              </Button>
             </DialogFooter>
           </form>
         </Form>
