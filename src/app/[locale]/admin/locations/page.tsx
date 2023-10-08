@@ -5,7 +5,7 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import { AddLocationForm } from "./add-location-form";
 
-export async function getLocations() {
+async function getLocations() {
   const locations = await db.query.locations.findMany();
 
   return locations;

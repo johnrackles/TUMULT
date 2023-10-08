@@ -13,7 +13,7 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EditLocationForm } from "./edit-location-form";
 
-export async function getLocation(id: number) {
+async function getLocation(id: number) {
   const location = await db.query.locations.findFirst({
     where: (locations) => eq(locations.id, id),
     with: { floors: { columns: { id: true, name: true } } },
