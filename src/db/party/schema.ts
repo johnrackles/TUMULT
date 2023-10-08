@@ -3,11 +3,12 @@ import {
   index,
   integer,
   pgTable,
+  primaryKey,
   serial,
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
-import { z } from "zod";
+import { date, z } from "zod";
 /**
  * update updated_at on every update
  * function taken from:
@@ -24,11 +25,9 @@ export const parties = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
     name: text("name").notNull().default("TUMULT"),
-    begin: timestamp("begin", { withTimezone: true, mode: "date" }),
+    begin: timestamp("begin", { withTimezone: true, mode: "date" }).notNull(),
     end: timestamp("end", { withTimezone: true, mode: "date" }),
-    location: integer("location_id").references(() => locations.id, {
-      onDelete: "set null",
-    }),
+    location: integer("location_id").notNull(),
     slug: text("slug").notNull().unique(),
     description: text("description").default(""),
   },
@@ -36,6 +35,49 @@ export const parties = pgTable(
     return { slugIdx: index("slug_idx").on(table.slug) };
   },
 );
+
+export const artistsToParties = pgTable(
+  "artists_to_parties",
+  {
+    partyId: integer("party_id").notNull(),
+    artistId: integer("artist_id").notNull(),
+  },
+  (t) => ({
+    pk: primaryKey(t.artistId, t.partyId),
+  }),
+);
+
+export const partiesRelations = relations(parties, ({ one, many }) => ({
+  partyLocation: one(locations, {
+    fields: [parties.location],
+    references: [locations.id],
+  }),
+  partyArtists: many(artists),
+}));
+
+export const artistsToPartiesRelations = relations(
+  artistsToParties,
+  ({ one }) => ({
+    artist: one(artists, {
+      fields: [artistsToParties.artistId],
+      references: [artists.id],
+    }),
+    party: one(parties, {
+      fields: [artistsToParties.partyId],
+      references: [parties.id],
+    }),
+  }),
+);
+
+export const insertPartySchema = z.object({
+  name: z.string().min(1),
+  begin: date(),
+  end: z.date().optional(),
+  location: z.number(),
+  slug: z.string().min(1),
+  description: z.string().optional(),
+  artists: z.array(z.number()).optional().default([]),
+});
 
 export const locations = pgTable("locations", {
   id: serial("id").primaryKey(),
@@ -74,18 +116,6 @@ export const floors = pgTable("floors", {
   locationId: integer("location_id"),
 });
 
-export const artists = pgTable("artists", {
-  id: serial("id").primaryKey(),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
-  name: text("name").notNull(),
-});
-
-export const insertArtistSchema = z.object({
-  name: z.string().min(1),
-});
-export const editArtistSchema = insertArtistSchema.partial();
-
 export const locationsRelations = relations(locations, ({ many }) => ({
   floors: many(floors),
 }));
@@ -97,3 +127,23 @@ export const floorsRelations = relations(floors, ({ one, many }) => ({
   }),
   artists: many(artists),
 }));
+
+export const artists = pgTable("artists", {
+  id: serial("id").primaryKey(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+  name: text("name").notNull(),
+});
+
+export const artistRelations = relations(artists, ({ many }) => ({
+  floors: many(floors),
+  parties: many(parties),
+}));
+
+export const insertArtistSchema = z.object({
+  name: z.string().min(1),
+});
+export const editArtistSchema = insertArtistSchema.partial();
+export const deleteArtistSchema = z.object({
+  id: z.number(),
+});

@@ -10,8 +10,8 @@ import { db } from "@/db/db";
 import { artists as dbArtists } from "@/db/party/schema";
 import { asc } from "drizzle-orm";
 import { type Metadata } from "next";
-import Link from "next/link";
 import { AddArtistForm } from "./add-artist-form";
+import { DeleteArtistForm } from "./delete-artist-form";
 import { EditArtistForm } from "./edit-artist-form";
 
 export async function getArtists() {
@@ -34,17 +34,16 @@ export default async function ArtistsPage() {
       <H1 className="mb-4 md:mb-8">Artists</H1>
       <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
         {artists?.map((artist) => (
-          <Link key={artist.id} href={`/admin/Artists/${artist.id}`}>
-            <Card>
-              <CardHeader>
-                <CardTitle>{artist.name}</CardTitle>
-              </CardHeader>
-              <CardContent></CardContent>
-              <CardFooter>
-                <EditArtistForm />
-              </CardFooter>
-            </Card>
-          </Link>
+          <Card key={artist.id}>
+            <CardHeader>
+              <CardTitle>{artist.name}</CardTitle>
+            </CardHeader>
+            <CardContent></CardContent>
+            <CardFooter className="space-x-2">
+              <EditArtistForm initialValues={artist} />{" "}
+              <DeleteArtistForm id={artist.id} />
+            </CardFooter>
+          </Card>
         ))}
         <Card>
           <CardHeader>
