@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -27,8 +33,12 @@ import {
 } from "@/components/ui/tooltip";
 import { insertPartySchema } from "@/db/party/schema";
 import { UploadDropzone } from "@/lib/uploadthing";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, PlusCircle, Save, XCircle } from "lucide-react";
+import { format } from "date-fns";
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import { CalendarIcon, Loader2, PlusCircle, Save, XCircle } from "lucide-react";
 import { type Session } from "next-auth";
 import Image from "next/image";
 import { startTransition, useState } from "react";
@@ -36,6 +46,8 @@ import { useForm } from "react-hook-form";
 import { type UploadFileResponse } from "uploadthing/client";
 import { type z } from "zod";
 import { addParty, deleteImage } from "./actions";
+
+dayjs.extend(LocalizedFormat);
 
 export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
   const [flyer, setFlyer] = useState<UploadFileResponse>();
@@ -159,7 +171,46 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                 ) : null}
                 <FormMessage />
               </FormItem>
-
+              <FormField
+                control={form.control}
+                name="begin"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Start</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className={cn(
+                              "w-[240px] pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground",
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormDescription>Start time of the party</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               {apiError ? <FormMessage>{apiError}</FormMessage> : null}
             </div>
             <DialogFooter>
