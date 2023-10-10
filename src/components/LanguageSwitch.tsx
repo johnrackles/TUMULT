@@ -2,13 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useChangeLocale } from "@/locales/client";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 export function LanguageSwtich({
   className,
@@ -24,10 +18,7 @@ export function LanguageSwtich({
   const changeLocale = useChangeLocale();
 
   return (
-    <Select
-      onValueChange={(val) => changeLocale(val as "en" | "de")}
-      defaultValue={locale}
-    >
+    <Select onValueChange={(val) => changeLocale(val as "en" | "de")} defaultValue={locale}>
       <SelectTrigger
         className={cn("w-[180px] bg-transparent", className)}
         aria-label="Select Language"

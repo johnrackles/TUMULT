@@ -1,12 +1,6 @@
 import { H4, P } from "@/components/Typography";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db/db";
 import { eq } from "drizzle-orm";
 import { type Metadata } from "next";
@@ -21,11 +15,7 @@ async function getLocation(id: number) {
   return location;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const location = await getLocation(parseInt(params.id));
 
   if (!location) {
@@ -35,11 +25,7 @@ export async function generateMetadata({
   return { title: location.name };
 }
 
-export default async function LocationPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function LocationPage({ params }: { params: { id: string } }) {
   const location = await getLocation(parseInt(params.id));
 
   if (!location) {

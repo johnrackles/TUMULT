@@ -15,15 +15,10 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { editArtistSchema } from "@/db/party/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Pen, Save } from "lucide-react";
