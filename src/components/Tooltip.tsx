@@ -5,13 +5,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-export function Tooltip({
-  children,
-  text,
-}: {
-  children: React.ReactNode;
-  text: string;
-}) {
+export function Tooltip({ children, text }: { children: React.ReactNode; text: string }) {
   return (
     <TooltipProvider>
       <TooltipComponent>

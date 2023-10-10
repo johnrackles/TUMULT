@@ -27,9 +27,7 @@ export default async function PartiesPage() {
   }
 
   // get the party that's closest to now in the future
-  const nextParty = parties.find((party) =>
-    dayjs(party.begin).isAfter(dayjs()),
-  );
+  const nextParty = parties.find((party) => dayjs(party.begin).isAfter(dayjs()));
 
   return (
     <div>

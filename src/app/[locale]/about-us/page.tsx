@@ -10,10 +10,6 @@ export function generateMetadata({ params }: Props): Metadata {
   return { title: params.locale === "en" ? "About Us" : "Über Uns" };
 }
 
-export default function AboutUsPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default function AboutUsPage({ params: { locale } }: { params: { locale: string } }) {
   return <Content locale={locale} />;
 }

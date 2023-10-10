@@ -1,11 +1,5 @@
 import { H1 } from "@/components/Typography";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db/db";
 import { artists as dbArtists } from "@/db/party/schema";
 import { asc } from "drizzle-orm";
@@ -40,8 +34,7 @@ export default async function ArtistsPage() {
             </CardHeader>
             <CardContent></CardContent>
             <CardFooter className="space-x-2">
-              <EditArtistForm initialValues={artist} />{" "}
-              <DeleteArtistForm id={artist.id} />
+              <EditArtistForm initialValues={artist} /> <DeleteArtistForm id={artist.id} />
             </CardFooter>
           </Card>
         ))}

@@ -41,18 +41,12 @@ export async function Footer() {
           </li>
         )}
         <li>
-          <Link
-            href="/about-us"
-            className="inline-block hover:underline md:ml-4"
-          >
+          <Link href="/about-us" className="inline-block hover:underline md:ml-4">
             {t("About Us")}
           </Link>
         </li>
         <li>
-          <Link
-            href="/impressum"
-            className="inline-block hover:underline md:ml-4"
-          >
+          <Link href="/impressum" className="inline-block hover:underline md:ml-4">
             {t("Imprint")}
           </Link>
         </li>

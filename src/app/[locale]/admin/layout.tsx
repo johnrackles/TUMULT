@@ -12,11 +12,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { extractRouterConfig } from "uploadthing/server";
 
-export default async function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
   if (!session) {

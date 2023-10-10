@@ -1,20 +1,10 @@
 import { badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { type insertLocationsSchema } from "@/db/party/schema";
 import { cn } from "@/lib/utils";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { Plus } from "lucide-react";
 import { useRef, type SyntheticEvent } from "react";
 import { useFormContext } from "react-hook-form";
@@ -54,10 +44,7 @@ export function FloorsInput() {
                   <Tooltip>
                     <TooltipTrigger>
                       <Button
-                        className={cn(
-                          badgeVariants({ variant: "secondary" }),
-                          "h-auto",
-                        )}
+                        className={cn(badgeVariants({ variant: "secondary" }), "h-auto")}
                         onClick={() => {
                           // on click removes the floor from the list
                           const floorsValue = form.getValues().floors ?? [];
@@ -85,11 +72,7 @@ export function FloorsInput() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleAddFloor}
-                  >
+                  <Button type="button" variant="outline" onClick={handleAddFloor}>
                     <Plus />
                   </Button>
                 </TooltipTrigger>

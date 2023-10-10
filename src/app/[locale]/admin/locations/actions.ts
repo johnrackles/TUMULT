@@ -8,9 +8,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { type z } from "zod";
 
-export async function addLocation(
-  values: z.infer<typeof insertLocationsSchema>,
-) {
+export async function addLocation(values: z.infer<typeof insertLocationsSchema>) {
   try {
     const session = await getServerSession(authOptions);
 
@@ -20,10 +18,7 @@ export async function addLocation(
 
     const validated = insertLocationsSchema.parse(values);
 
-    const rows = await db
-      .insert(locations)
-      .values(validated)
-      .returning({ id: locations.id });
+    const rows = await db.insert(locations).values(validated).returning({ id: locations.id });
 
     // create floors and link to location
     if (validated.floors?.length > 0) {

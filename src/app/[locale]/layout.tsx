@@ -28,11 +28,7 @@ const AeonikFono = localFont({
   variable: "--font-aeonik",
 });
 
-export function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Metadata {
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return {
     title: {
       template: "%s | TUMULT",
@@ -51,11 +47,7 @@ export function generateMetadata({
   };
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
       <body

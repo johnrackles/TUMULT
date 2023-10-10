@@ -1,13 +1,5 @@
 import { relations } from "drizzle-orm";
-import {
-  index,
-  integer,
-  pgTable,
-  primaryKey,
-  serial,
-  text,
-  timestamp,
-} from "drizzle-orm/pg-core";
+import { index, integer, pgTable, primaryKey, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { date, z } from "zod";
 /**
  * update updated_at on every update
@@ -56,19 +48,16 @@ export const partiesRelations = relations(parties, ({ one, many }) => ({
   partyArtists: many(artists),
 }));
 
-export const artistsToPartiesRelations = relations(
-  artistsToParties,
-  ({ one }) => ({
-    artist: one(artists, {
-      fields: [artistsToParties.artistId],
-      references: [artists.id],
-    }),
-    party: one(parties, {
-      fields: [artistsToParties.partyId],
-      references: [parties.id],
-    }),
+export const artistsToPartiesRelations = relations(artistsToParties, ({ one }) => ({
+  artist: one(artists, {
+    fields: [artistsToParties.artistId],
+    references: [artists.id],
   }),
-);
+  party: one(parties, {
+    fields: [artistsToParties.partyId],
+    references: [parties.id],
+  }),
+}));
 
 export const insertPartySchema = z.object({
   name: z.string().min(1),

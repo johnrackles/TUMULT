@@ -66,29 +66,24 @@ export default function PartyPage({ params }: { params: { id: string } }) {
             </H3>
             <div>
               <P>
-                After our journey into the Trance worlds, we would like to dare
-                a new experiment for this Tumult: This time we put special focus
-                on local DJs, proving that great music doesn&apos;t have to
-                travel far. A dark yet diverse soundscape awaits you at MDF,
-                featuring artists like Dexy&apos;s Midnight, Josh Reid,
-                MAGDALENA MAY and Neovex, ranging from hard groove to hard
-                techno. In the lobby, you can tune in for infectious, driving
-                beats, from minimal techhouse to Chicago house, presented by our
-                talented DJs: Günther Lowrider, Niki K, Reflex Blue, Sandix and
-                Loriket.
+                After our journey into the Trance worlds, we would like to dare a new experiment for
+                this Tumult: This time we put special focus on local DJs, proving that great music
+                doesn&apos;t have to travel far. A dark yet diverse soundscape awaits you at MDF,
+                featuring artists like Dexy&apos;s Midnight, Josh Reid, MAGDALENA MAY and Neovex,
+                ranging from hard groove to hard techno. In the lobby, you can tune in for
+                infectious, driving beats, from minimal techhouse to Chicago house, presented by our
+                talented DJs: Günther Lowrider, Niki K, Reflex Blue, Sandix and Loriket.
               </P>
               <P>
-                Nach unserer Reise in die Trance-Welten, möchten wir für dieses
-                Tumult ein neues Experiment wagen: Diesmal legen wir besonderen
-                Fokus auf lokale DJs und beweisen damit, dass großartige Musik
-                keine weiten Wege zurücklegen muss. Auf dem MDF erwartet euch
-                eine düstere und dennoch vielfältige Klanglandschaft, die von
-                Künstlern wie Dexy&apos;s Midnight, Josh Reid, MAGDALENA MAY und
-                Neovex gestaltet wird, reichend von Hardgroove bis zu Hard
-                Techno. In der Lobby könnt ihr euch auf mitreißende, treibende
-                Beats einstellen, von Minimal Techhouse bis hin zu Chicago
-                House, präsentiert von unseren talentierten DJs: Günther
-                Lowrider, Niki K, Reflex Blue, Sandix und Loriket.
+                Nach unserer Reise in die Trance-Welten, möchten wir für dieses Tumult ein neues
+                Experiment wagen: Diesmal legen wir besonderen Fokus auf lokale DJs und beweisen
+                damit, dass großartige Musik keine weiten Wege zurücklegen muss. Auf dem MDF
+                erwartet euch eine düstere und dennoch vielfältige Klanglandschaft, die von
+                Künstlern wie Dexy&apos;s Midnight, Josh Reid, MAGDALENA MAY und Neovex gestaltet
+                wird, reichend von Hardgroove bis zu Hard Techno. In der Lobby könnt ihr euch auf
+                mitreißende, treibende Beats einstellen, von Minimal Techhouse bis hin zu Chicago
+                House, präsentiert von unseren talentierten DJs: Günther Lowrider, Niki K, Reflex
+                Blue, Sandix und Loriket.
               </P>
             </div>
           </div>

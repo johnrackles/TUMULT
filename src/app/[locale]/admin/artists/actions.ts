@@ -24,10 +24,7 @@ export async function addArtist(values: z.infer<typeof insertArtistSchema>) {
   try {
     const validated = insertArtistSchema.parse(values);
 
-    const rows = await db
-      .insert(artists)
-      .values(validated)
-      .returning({ id: artists.id });
+    const rows = await db.insert(artists).values(validated).returning({ id: artists.id });
 
     revalidatePath("/[locale]/admin/artists", "layout");
     redirect(`/admin/artists/${rows[0]?.id}`);
