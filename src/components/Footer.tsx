@@ -5,8 +5,8 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { LanguageSwtich } from "./LanguageSwitch";
 import { SigninButton } from "./SigninButton";
+import { SignoutButton } from "./SignoutButton";
 import { Tooltip } from "./Tooltip";
-import { P } from "./Typography";
 import { Button } from "./ui/button";
 
 export async function Footer() {
@@ -15,11 +15,23 @@ export async function Footer() {
   const t = await getI18n();
 
   return (
-    <footer className="flex flex-col justify-center space-y-2 border-t border-t-primary bg-black p-4 md:py-8">
-      <P className="mx-auto">
+    <footer className="flex flex-col justify-center space-y-2 border-t border-t-primary bg-black p-4 md:space-y-4 md:py-8">
+      <p className="mx-auto">
         © <span className="font-bold">TUMULT</span> {new Date().getFullYear()}
-      </P>
-      <ul className="mx-auto flex flex-row items-center text-sm">
+      </p>
+      {session ? (
+        <ul className="mx-auto flex flex-row items-center space-x-4 text-sm">
+          <li>
+            <Link href="/admin">Admin</Link>
+          </li>
+          <li>
+            <SignoutButton variant="link" className="text-foreground">
+              Logout
+            </SignoutButton>
+          </li>
+        </ul>
+      ) : null}
+      <ul className="mx-auto flex flex-row items-center space-x-4 text-sm">
         {session ? null : (
           <li>
             <SigninButton
@@ -29,18 +41,12 @@ export async function Footer() {
           </li>
         )}
         <li>
-          <Link
-            href="/about-us"
-            className="ml-2 inline-block hover:underline md:ml-4"
-          >
+          <Link href="/about-us" className="inline-block hover:underline md:ml-4">
             {t("About Us")}
           </Link>
         </li>
         <li>
-          <Link
-            href="/impressum"
-            className="ml-2 inline-block hover:underline md:ml-4"
-          >
+          <Link href="/impressum" className="inline-block hover:underline md:ml-4">
             {t("Imprint")}
           </Link>
         </li>

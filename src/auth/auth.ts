@@ -13,4 +13,9 @@ export const authOptions: NextAuthOptions = {
       issuer: env.AUTH0_ISSUER,
     }),
   ],
+  callbacks: {
+    session({ session, user }) {
+      return { ...session, user: { ...session.user, id: user.id } };
+    },
+  },
 };

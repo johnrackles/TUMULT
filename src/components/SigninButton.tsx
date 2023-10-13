@@ -17,7 +17,7 @@ export function SigninButton({
         className,
       )}
       onClick={() => {
-        void signIn("auth0");
+        void signIn("auth0", { callbackUrl: "/admin" });
       }}
       variant={variant}
     >

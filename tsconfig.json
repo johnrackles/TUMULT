@@ -27,6 +27,9 @@
     ]
   },
   "include": [
+    "next.config.js",
+    "drizzle.config.ts",
+    "tailwind.config.ts",
     ".eslintrc.cjs",
     "next-env.d.ts",
     "src/**/*.ts",
@@ -34,7 +37,8 @@
     "src/**/*.cjs",
     "src/**/*.mjs",
     ".lintstagedrc.cjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/[locale]/admin/artists/actions.ts"
   ],
   "exclude": ["node_modules", ".lintstagedrc.cjs"]
 }

@@ -13,6 +13,8 @@ export const env = createEnv({
     AUTH0_CLIENT_ID: z.string().min(1),
     AUTH0_CLIENT_SECRET: z.string().min(1),
     AUTH0_ISSUER: z.string().url(),
+    UPLOADTHING_SECRET: z.string().min(1),
+    UPLOADTHING_APP_ID: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -31,5 +33,7 @@ export const env = createEnv({
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
     AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
     AUTH0_ISSUER: process.env.AUTH0_ISSUER,
+    UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
+    UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
   },
 });
