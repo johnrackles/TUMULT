@@ -20,8 +20,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { insertPartySchema } from "@/db/party/schema";
 import { UploadDropzone } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
@@ -48,9 +57,12 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
     resolver: zodResolver(insertPartySchema),
     defaultValues: {
       name: "TUMULT",
+      slug: "",
       location: undefined,
       begin: undefined,
+      beginTime: "23:00",
       end: undefined,
+      endTime: "10:00",
       artists: [],
     },
   });
@@ -93,7 +105,21 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Name*</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="slug"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Slug*</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -125,7 +151,12 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                             });
                           }}
                         >
-                          <Image src={flyer.url} alt="flyer" fill sizes="80px" />
+                          <Image
+                            src={flyer.url}
+                            alt="flyer"
+                            fill
+                            sizes="80px"
+                          />
                           <XCircle className="absolute right-1 top-1 hidden group-hover:block" />
                         </Button>
                       </TooltipTrigger>
@@ -151,7 +182,9 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                   />
                 )}
                 {flyer?.key ? (
-                  <FormDescription>To upload different image, click on thumbnail</FormDescription>
+                  <FormDescription>
+                    To upload different image, click on thumbnail
+                  </FormDescription>
                 ) : null}
                 <FormMessage />
               </FormItem>
@@ -159,38 +192,123 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                 control={form.control}
                 name="begin"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Start</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            className={cn(
-                              "w-[240px] pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground",
-                            )}
-                          >
-                            {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormDescription>Start time of the party</FormDescription>
+                  <FormItem className="grid grid-cols-[auto,1fr] gap-x-2 space-y-0">
+                    <div className="flex flex-col space-y-2">
+                      <FormLabel>Date*</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className={cn(
+                                "col-start-1 row-start-2 w-[240px] pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground",
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormDescription className="row-start-3">
+                        Start time of the party
+                      </FormDescription>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="beginTime"
+                      render={({ field }) => (
+                        <FormItem className="col-start-2 row-start-1 flex flex-col">
+                          <FormLabel>Start Time</FormLabel>
+                          <FormControl>
+                            <Input type="time" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="end"
+                render={({ field }) => (
+                  <FormItem className="grid grid-cols-[auto,1fr] gap-x-2 space-y-0">
+                    <div className="flex flex-col space-y-2">
+                      <FormLabel>End</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className={cn(
+                                "col-start-1 row-start-2 w-[240px] pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground",
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormDescription className="row-start-3">
+                        End time of the party
+                      </FormDescription>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="endTime"
+                      render={({ field }) => (
+                        <FormItem className="col-start-2 row-start-1 flex flex-col">
+                          <FormLabel>End Time</FormLabel>
+                          <FormControl>
+                            <Input type="time" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {Object.keys(form.formState.errors).length > 0 ? (
+                <FormMessage>
+                  {JSON.stringify(form.formState.errors)}
+                </FormMessage>
+              ) : null}
               {apiError ? <FormMessage>{apiError}</FormMessage> : null}
             </div>
             <DialogFooter>

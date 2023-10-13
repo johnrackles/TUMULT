@@ -1,6 +1,14 @@
 import { relations } from "drizzle-orm";
-import { index, integer, pgTable, primaryKey, serial, text, timestamp } from "drizzle-orm/pg-core";
-import { date, z } from "zod";
+import {
+  index,
+  integer,
+  pgTable,
+  primaryKey,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
+import { z } from "zod";
 /**
  * update updated_at on every update
  * function taken from:
@@ -48,21 +56,42 @@ export const partiesRelations = relations(parties, ({ one, many }) => ({
   partyArtists: many(artists),
 }));
 
-export const artistsToPartiesRelations = relations(artistsToParties, ({ one }) => ({
-  artist: one(artists, {
-    fields: [artistsToParties.artistId],
-    references: [artists.id],
+export const artistsToPartiesRelations = relations(
+  artistsToParties,
+  ({ one }) => ({
+    artist: one(artists, {
+      fields: [artistsToParties.artistId],
+      references: [artists.id],
+    }),
+    party: one(parties, {
+      fields: [artistsToParties.partyId],
+      references: [parties.id],
+    }),
   }),
-  party: one(parties, {
-    fields: [artistsToParties.partyId],
-    references: [parties.id],
-  }),
-}));
+);
 
 export const insertPartySchema = z.object({
   name: z.string().min(1),
-  begin: date(),
+  begin: z.date(),
+  beginTime: z.string().refine(
+    (s) => {
+      const [hours, minutes] = s.split(":");
+      return (
+        Number.isInteger(Number(hours)) && Number.isInteger(Number(minutes))
+      );
+    },
+    { message: "Start time must be in format HH:MM" },
+  ),
   end: z.date().optional(),
+  endTime: z.string().refine(
+    (s) => {
+      const [hours, minutes] = s.split(":");
+      return (
+        Number.isInteger(Number(hours)) && Number.isInteger(Number(minutes))
+      );
+    },
+    { message: "Start time must be in format HH:MM" },
+  ),
   location: z.number(),
   slug: z.string().min(1),
   description: z.string().optional(),
