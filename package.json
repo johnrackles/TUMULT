@@ -30,7 +30,7 @@
     "clsx": "^2.0.0",
     "drizzle-orm": "^0.31.2",
     "drizzle-zod": "^0.5.1",
-    "eslint": "^9.5.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
     "jiti": "^1.21.6",
     "lucide-react": "^0.395.0",

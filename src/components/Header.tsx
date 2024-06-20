@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { cn } from "@/lib/utils";
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { SignoutButton } from "./SignoutButton";
 
@@ -15,7 +16,9 @@ export async function Header() {
         TUMULT
       </Link>
       {session ? (
-        <SignoutButton className="absolute right-0 md:right-4" />
+        <SignoutButton className="absolute right-0 md:right-4">
+          <LogOut />
+        </SignoutButton>
       ) : null}
     </header>
   );
