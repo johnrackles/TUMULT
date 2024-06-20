@@ -10,7 +10,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -34,7 +34,9 @@
     "src/**/*.cjs",
     "src/**/*.mjs",
     ".lintstagedrc.cjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "drizzle.config.ts",
+    "next.config.js"
   ],
   "exclude": ["node_modules", ".lintstagedrc.cjs"]
 }

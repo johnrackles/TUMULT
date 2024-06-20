@@ -1,5 +1,5 @@
 import { db } from "@/db/db";
-import { env } from "@/env.mjs";
+import { env } from "@/env";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth from "next-auth";
 import Auth0 from "next-auth/providers/auth0";
