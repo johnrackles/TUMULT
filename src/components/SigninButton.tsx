@@ -1,15 +1,16 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { signIn } from "next-auth/react";
+import { type ReactNode } from "react";
 import { Button, type ButtonProps } from "./ui/button";
 
-export function SigninButton({
-  variant,
-  className,
-}: {
+type Props = {
   className?: string;
+  children: ReactNode;
   variant?: ButtonProps["variant"];
-}) {
+};
+
+export function SigninButton({ variant, className, children }: Props) {
   return (
     <Button
       className={cn(
@@ -21,7 +22,7 @@ export function SigninButton({
       }}
       variant={variant}
     >
-      Login
+      {children}
     </Button>
   );
 }

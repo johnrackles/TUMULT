@@ -1,11 +1,10 @@
-import { authOptions } from "@/auth/auth";
+import { auth } from "@/auth";
 import { cn } from "@/lib/utils";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { SignoutButton } from "./SignoutButton";
 
 export async function Header() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   return (
     <header className="flex items-center border-b border-b-primary bg-black p-4">

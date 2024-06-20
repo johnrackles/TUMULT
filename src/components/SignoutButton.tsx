@@ -1,11 +1,17 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
+import { type ReactNode } from "react";
 import { Tooltip } from "./Tooltip";
-import { Button } from "./ui/button";
+import { Button, type ButtonProps } from "./ui/button";
 
-export function SignoutButton({ className }: { className?: string }) {
+type Props = {
+  className?: string;
+  children: ReactNode;
+  variant?: ButtonProps["variant"];
+};
+
+export function SignoutButton({ className, children, variant }: Props) {
   return (
     <Tooltip text="Sign Out">
       <Button
@@ -16,8 +22,9 @@ export function SignoutButton({ className }: { className?: string }) {
         onClick={() => {
           void signOut();
         }}
+        variant={variant}
       >
-        <LogOut />
+        {children}
       </Button>
     </Tooltip>
   );
