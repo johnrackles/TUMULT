@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-bun type-check
+npm run type-check
+NODE_ENV=production npm run build
