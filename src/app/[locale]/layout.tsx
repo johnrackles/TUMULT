@@ -4,29 +4,56 @@ import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
+import { Karla as KarlaFont } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
 
-const AeonikFono = localFont({
+const NeueHaasDisplay = localFont({
   src: [
-    {
-      path: "../../fonts/AeonikFono-Light.woff2",
-      weight: "300",
+    /*  {
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.woff2",
+      weight: "100",
       style: "normal",
     },
     {
-      path: "../../fonts/AeonikFono-Regular.woff2",
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Thin.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Light.woff2",
+      weight: "300",
+      style: "normal",
+    }, */
+    {
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../fonts/AeonikFono-Bold.woff2",
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Mediu.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Bold.woff2",
       weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Black.woff2",
+      weight: "900",
       style: "normal",
     },
   ],
   display: "swap",
-  variable: "--font-aeonik",
+  variable: "--font-neue-haas",
+});
+const Karla = KarlaFont({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-karla",
 });
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -53,8 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de">
       <body
         className={cn(
-          AeonikFono.variable,
-          "grid min-h-screen grid-rows-[auto,1fr,auto] bg-primary",
+          NeueHaasDisplay.variable,
+          Karla.variable,
+        "grid min-h-screen grid-rows-[auto,1fr,auto] bg-primary",
         )}
       >
         <Header />

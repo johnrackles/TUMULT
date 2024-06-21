@@ -18,7 +18,8 @@ export default withUt({
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-aeonik)"],
+        sans: ["var(--font-karla)"],
+        display: ["var(--font-neue-haas)"],
       },
       colors: {
         border: "hsl(var(--border))",

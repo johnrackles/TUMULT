@@ -8,7 +8,12 @@ type Props = {
 
 export function H1({ children, className }: HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl", className)}>
+    <h1
+      className={cn(
+        "font-display scroll-m-20 text-4xl font-extrabold tracking-tight text-primary lg:text-5xl",
+        className,
+      )}
+    >
       {children}
     </h1>
   );
@@ -18,7 +23,7 @@ export function H2({ children, className }: HTMLAttributes<HTMLHeadingElement>) 
   return (
     <h2
       className={cn(
-        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0",
+        "font-display scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-primary transition-colors first:mt-0",
         className,
       )}
     >
@@ -29,7 +34,12 @@ export function H2({ children, className }: HTMLAttributes<HTMLHeadingElement>) 
 
 export function H3({ children, className }: Props) {
   return (
-    <h3 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight", className)}>
+    <h3
+      className={cn(
+        "font-display scroll-m-20 text-2xl font-semibold tracking-tight text-primary",
+        className,
+      )}
+    >
       {children}
     </h3>
   );
@@ -37,7 +47,12 @@ export function H3({ children, className }: Props) {
 
 export function H4({ children, className }: Props) {
   return (
-    <h4 className={cn("scroll-m-20 text-xl font-semibold tracking-tight", className)}>
+    <h4
+      className={cn(
+        "font-display scroll-m-20 text-xl font-semibold tracking-tight text-primary",
+        className,
+      )}
+    >
       {children}
     </h4>
   );
