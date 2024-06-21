@@ -36,7 +36,8 @@
     ".next/types/**/*.ts",
     "drizzle.config.ts",
     "next.config.js",
-    "tailwind.config.ts"
+    "tailwind.config.ts",
+    "mdx-components.tsx"
   ],
   "exclude": ["node_modules", ".lintstagedrc.cjs"]
 }
