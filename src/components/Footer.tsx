@@ -15,8 +15,8 @@ export async function Footer() {
   const t = await getI18n();
 
   return (
-    <footer className="flex flex-col justify-center space-y-2 border-t border-t-primary bg-black p-4 md:py-8">
-      <P className="mx-auto">
+    <footer className="flex flex-col justify-center space-y-2 border-t border-t-primary bg-black p-4 md:space-y-4 md:py-8">
+      <P className="mx-auto !mb-0">
         © <span className="font-bold">TUMULT</span> {new Date().getFullYear()}
       </P>
       <ul className="mx-auto flex flex-row items-center text-sm">
@@ -57,14 +57,11 @@ export async function Footer() {
         </li>
       </ul>
       <div className="mx-auto flex-row md:flex md:space-x-8">
-        <ul className="flex flex-row items-center text-sm">
+        <ul className="flex flex-row items-center space-x-2 text-sm">
           <li>
             <Tooltip text="RA.co">
-              <Button asChild size="icon">
-                <a
-                  href="https://ra.co/promoters/112866"
-                  className="bg-transparent !font-bold text-white"
-                >
+              <Button asChild variant="outline" size="icon">
+                <a href="https://ra.co/promoters/112866" className="!font-bold">
                   RA
                 </a>
               </Button>
@@ -72,12 +69,8 @@ export async function Footer() {
           </li>
           <li>
             <Tooltip text="Telegram">
-              <Button asChild size="icon">
-                <a
-                  href="https://t.me/tumultberlin"
-                  className="bg-transparent text-white"
-                  aria-label="Telegram"
-                >
+              <Button asChild variant="outline" size="icon">
+                <a href="https://t.me/tumultberlin" aria-label="Telegram">
                   <Send size={20} />
                 </a>
               </Button>
@@ -85,10 +78,9 @@ export async function Footer() {
           </li>
           <li>
             <Tooltip text="Instagram">
-              <Button asChild size="icon">
+              <Button asChild variant="outline" size="icon">
                 <a
                   href="https://www.instagram.com/tumult.berlin/"
-                  className="bg-transparent text-white"
                   aria-label="Instagram"
                 >
                   <Instagram size={20} />
@@ -98,12 +90,8 @@ export async function Footer() {
           </li>
           <li>
             <Tooltip text="Contact us">
-              <Button asChild size="icon">
-                <a
-                  href="mailto:rave@tumult.club"
-                  className="bg-transparent text-white"
-                  aria-label="Send E-Mail"
-                >
+              <Button asChild variant="outline" size="icon">
+                <a href="mailto:rave@tumult.club" aria-label="Send E-Mail">
                   <Mail size={20} />
                 </a>
               </Button>
