@@ -1,5 +1,5 @@
 import { ourFileRouter } from "@/app/api/uploadthing/core";
-import { authOptions } from "@/auth/auth";
+import { auth } from "@/auth";
 import { NavigationMenuLink } from "@/components/navigation-menu-link";
 import {
   NavigationMenu,
@@ -7,13 +7,12 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { extractRouterConfig } from "uploadthing/server";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session) {
     redirect("/api/auth/signin?error=Not%20Authenticated");

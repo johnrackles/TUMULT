@@ -1,12 +1,11 @@
 "use server";
 
 import { utapi } from "@/app/api/uploadthing/api";
-import { authOptions } from "@/auth/auth";
+import { auth } from "@/auth";
 import { db } from "@/db/db";
 import { deleteImageSchema, images } from "@/db/image/schema";
 import { insertPartySchema, parties } from "@/db/party/schema";
 import { eq } from "drizzle-orm";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { type z } from "zod";
 
@@ -34,7 +33,7 @@ export async function addParty(values: z.infer<typeof insertPartySchema>) {
 }
 
 export async function deleteImage(values: z.infer<typeof deleteImageSchema>) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session) {
     redirect("/api/auth/signin?error=Not%20signed%20in");

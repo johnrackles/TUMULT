@@ -1,16 +1,15 @@
 "use server";
 
-import { authOptions } from "@/auth/auth";
+import { auth } from "@/auth";
 import { db } from "@/db/db";
 import { editLocationSchema, floors, locations } from "@/db/party/schema";
 import { eq } from "drizzle-orm";
-import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export async function editLocation(values: z.infer<typeof editLocationSchema>) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session) {
     redirect("/api/auth/signin?error=Not%20Authenticated");
@@ -37,7 +36,7 @@ const editFloorSchema = z.object({
 });
 
 export async function editFloor(value: z.infer<typeof editFloorSchema>) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session) {
     redirect("/api/auth/signin?error=Not%20Authenticated");
@@ -60,7 +59,7 @@ export async function editFloor(value: z.infer<typeof editFloorSchema>) {
 }
 
 export async function deleteFloor(id: number) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session) {
     redirect("/api/auth/signin?error=Not%20Authenticated");

@@ -20,17 +20,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { insertPartySchema } from "@/db/party/schema";
 import { UploadDropzone } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
@@ -43,14 +34,14 @@ import { type Session } from "next-auth";
 import Image from "next/image";
 import { startTransition, useState } from "react";
 import { useForm } from "react-hook-form";
-import { type UploadFileResponse } from "uploadthing/client";
+import { type ClientUploadedFileData } from "uploadthing/types";
 import { type z } from "zod";
 import { addParty, deleteImage } from "./actions";
 
 dayjs.extend(LocalizedFormat);
 
 export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
-  const [flyer, setFlyer] = useState<UploadFileResponse>();
+  const [flyer, setFlyer] = useState<ClientUploadedFileData<null>>();
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
   const form = useForm<z.infer<typeof insertPartySchema>>({
@@ -151,12 +142,7 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                             });
                           }}
                         >
-                          <Image
-                            src={flyer.url}
-                            alt="flyer"
-                            fill
-                            sizes="80px"
-                          />
+                          <Image src={flyer.url} alt="flyer" fill sizes="80px" />
                           <XCircle className="absolute right-1 top-1 hidden group-hover:block" />
                         </Button>
                       </TooltipTrigger>
@@ -182,9 +168,7 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                   />
                 )}
                 {flyer?.key ? (
-                  <FormDescription>
-                    To upload different image, click on thumbnail
-                  </FormDescription>
+                  <FormDescription>To upload different image, click on thumbnail</FormDescription>
                 ) : null}
                 <FormMessage />
               </FormItem>
@@ -206,11 +190,7 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                                 !field.value && "text-muted-foreground",
                               )}
                             >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
+                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
@@ -264,11 +244,7 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                                 !field.value && "text-muted-foreground",
                               )}
                             >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
+                              {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
@@ -305,9 +281,7 @@ export function AddPartyForm({ userId }: { userId: Session["user"]["id"] }) {
                 )}
               />
               {Object.keys(form.formState.errors).length > 0 ? (
-                <FormMessage>
-                  {JSON.stringify(form.formState.errors)}
-                </FormMessage>
+                <FormMessage>{JSON.stringify(form.formState.errors)}</FormMessage>
               ) : null}
               {apiError ? <FormMessage>{apiError}</FormMessage> : null}
             </div>

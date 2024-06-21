@@ -1,11 +1,10 @@
-import { authOptions } from "@/auth/auth";
+import { auth } from "@/auth";
 import { H1, H4 } from "@/components/Typography";
 import { db } from "@/db/db";
 import { parties } from "@/db/party/schema";
 import dayjs from "dayjs";
 import { asc } from "drizzle-orm";
 import { type Metadata } from "next";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AddPartyForm } from "./add-party-form";
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PartiesPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const parties = await getParties();
 
   if (!session?.user.id) {
