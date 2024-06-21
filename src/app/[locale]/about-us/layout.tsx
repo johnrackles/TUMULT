@@ -21,8 +21,6 @@ const components = {
 export default function MDXLayout({ children }: { children: React.ReactNode }) {
   return (
     <MDXProvider components={components}>
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
-      {/* @ts-ignore */}
       <div className="p-4 md:p-0">
         <div className="container md:mx-auto">{children}</div>
       </div>

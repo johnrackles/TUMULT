@@ -1,7 +1,7 @@
 export default {
-  German: "German",
-  English: "English",
-  "Select Language": "Select Language",
+  German: "Deutsch",
+  English: "Englisch",
+  "Select Language": "Sprache auswählen",
   "About Us": "Über uns",
   Imprint: "Impressum",
 } as const;

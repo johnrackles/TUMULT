@@ -1,13 +1,13 @@
 import { db } from "@/db/db";
-import { env } from "@/env.mjs";
+import { env } from "@/env";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { type NextAuthOptions } from "next-auth";
-import Auth0Provider from "next-auth/providers/auth0";
+import NextAuth from "next-auth";
+import Auth0 from "next-auth/providers/auth0";
 
-export const authOptions: NextAuthOptions = {
+export const { auth, handlers } = NextAuth({
   adapter: DrizzleAdapter(db),
   providers: [
-    Auth0Provider({
+    Auth0({
       clientId: env.AUTH0_CLIENT_ID,
       clientSecret: env.AUTH0_CLIENT_SECRET,
       issuer: env.AUTH0_ISSUER,
@@ -18,4 +18,4 @@ export const authOptions: NextAuthOptions = {
       return { ...session, user: { ...session.user, id: user.id } };
     },
   },
-};
+});

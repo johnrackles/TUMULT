@@ -28,7 +28,7 @@ export default function ImpressumPage() {
           <P>
             <span className="font-bold">Vertreten durch:</span>
             <br />
-            Gesellschafter Johannes Rackles und Leopold Reinecke
+            Gesellschafter Johannes Rackles und Leonhard Reinecke
           </P>
         </CardContent>
       </Card>
