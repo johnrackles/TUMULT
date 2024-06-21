@@ -33,11 +33,10 @@
     "src/**/*.tsx",
     "src/**/*.cjs",
     "src/**/*.mjs",
-    ".lintstagedrc.cjs",
     ".next/types/**/*.ts",
     "drizzle.config.ts",
     "next.config.js",
     "tailwind.config.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".lintstagedrc.cjs"]
 }
