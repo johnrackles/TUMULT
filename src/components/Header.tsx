@@ -1,4 +1,4 @@
-import Logo from "@/assets/Tumult-wobbly_weiss.png";
+import Logo from "@/assets/tumult-logo-weiss.png";
 import { auth } from "@/auth";
 import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
