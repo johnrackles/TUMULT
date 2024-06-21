@@ -11,7 +11,7 @@ export async function Header() {
   return (
     <header className="flex items-center border-b border-b-primary bg-black p-4">
       <Link href="/" className={cn("mx-auto font-bold text-primary md:text-xl")}>
-        <Image src={require("@/assets/Tumult-Logo-weiss.png")} alt="TUMULT" height={40} priority />
+        <Image src={require("../assets/Tumult-Logo-weiss.png")} alt="TUMULT" height={40} priority />
       </Link>
       {session ? (
         <SignoutButton className="absolute right-0 md:right-4">
