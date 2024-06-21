@@ -10,7 +10,7 @@ import "../globals.css";
 
 const NeueHaasDisplay = localFont({
   src: [
-    {
+    /*  {
       path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-XThin.woff2",
       weight: "100",
       style: "normal",
@@ -24,7 +24,7 @@ const NeueHaasDisplay = localFont({
       path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Light.woff2",
       weight: "300",
       style: "normal",
-    },
+    }, */
     {
       path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Roman.woff2",
       weight: "400",
@@ -42,7 +42,7 @@ const NeueHaasDisplay = localFont({
     },
     {
       path: "../../fonts/NeueHaasDisplay/NeueHaasDisplay-Black.woff2",
-      weight: "800",
+      weight: "900",
       style: "normal",
     },
   ],
